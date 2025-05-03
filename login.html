@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="png" href="images/icon/favicon.png">
+    <title>Login SignUp</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost/elearn/loginStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" id="log" onclick="login()" style="color: #fff;">Log In</button>
+            <button type="button" class="toggle-btn" id="reg" onclick="register()">Register</button>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/BNMIT" target="_blank">
+    <img src="images/icon/fb2.png" alt="Your Image Description">
+</a>
+<a href="https://www.instagram.com/bnmitsocial/?hl=en" target="_blank">
+    <img src="images/icon/insta2.png" alt="Your Image Description">
+</a>
+            <a href="https://x.com/BNMIT" target="_blank">
+    <img src="images/icon/tt.png" alt="Your Image Description">
+</a>
+        </div>
+        
+        <!-- Login Form -->
+        <form id="login" class="input-group" action="authenticate.php" method="post" >
+            <div class="inp">
+                <img src="images/icon/user.png"><input type="text" id="username" name="username" class="input-field" placeholder="Username or Phone Number" style="width: 88%; border:none;" required="required">
+            </div>
+            <div class="inp">
+                <img src="images/icon/password.png"><input type="password" id="password" name="password" class="input-field" placeholder="Password" style="width: 88%; border: none;" required="required">
+            </div>
+            <input type="checkbox" class="check-box">Remember Password
+            <button type="submit" class="submit-btn">Log In</button>
+	    
+        </form>
+
+        <div class="other" id="other">
+            <div class="instead">
+                <h3>or</h3>
+            </div>
+            <button class="connect" onclick="google()">
+                <img src="images/icon/google.png"><span>Sign in with Google</span>
+            </button>
+        </div>
+        
+        <!-- Registration Form -->
+        <form id="register" class="input-group" action="register.php" method="post">
+            <input type="text" name="fullname" class="input-field" placeholder="Full Name" required="required">
+            <input type="email" name="email" class="input-field" placeholder="Email Address" required="required">
+            <input type="text" name="username" class="input-field" placeholder="Username" required="required">
+            <input type="password" name="password" class="input-field" placeholder="Create Password" required="required">
+            <input type="password" name="confirm_password" class="input-field" placeholder="Confirm Password" required="required">
+            <input type="checkbox" class="check-box" id="chkAgree" onclick="goFurther()">I agree to the Terms & Conditions
+            <button type="submit" id="btnSubmit" class="submit-btn reg-btn">Register</button>
+        </form>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
