@@ -3,54 +3,26 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - master   # Runs on push to the master branch
+      - master
   pull_request:
     branches:
-      - master   # Runs on pull request to the master branch
+      - master
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Runs on the latest Ubuntu VM
-
+    runs-on: ubuntu-latest
+    
     steps:
-    # Step 1: Checkout code
     - name: Checkout code
       uses: actions/checkout@v2
-
-    # Step 2: Set up PHP (adjust version as needed)
+      
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'  # Change to the PHP version that matches your project
+        php-version: '8.0'  # Use the correct PHP version for your project
 
-    # Step 3: Install Composer dependencies (if any)
-    - name: Install dependencies
+    - name: Lint HTML and CSS
       run: |
-        curl -sS https://getcomposer.org/installer | php  # Install Composer
-        php composer.phar install  # Install dependencies from composer.json (if any)
-
-    # Step 4: Set up the environment (Optional: For example, setting up a .env file or database)
-    - name: Set up environment
-      run: |
-        echo "Setting up environment for your project..."
-        # Add your environment setup commands here (e.g., setting up .env or database)
-
-    # Step 5: Run PHP tests (Optional)
-    - name: Run PHP tests
-      run: |
-        php vendor/bin/phpunit  # Run PHPUnit or any other testing tool you use
-        # If you don't have tests, you can skip this step
-
-    # Step 6: Lint HTML and CSS (Optional: Add linters for HTML/CSS)
-    - name: Lint HTML
-      run: |
-        npx htmlhint "**/*.html"  # Runs HTML linting if you have htmlhint configured
-    - name: Lint CSS
-      run: |
-        npx stylelint "**/*.css"  # Runs CSS linting if you have stylelint configured
-
-    # Step 7: Deploy (Optional - if you plan to deploy later)
-    - name: Deploy to Render (Optional)
-      run: |
-        echo "Deploying to Render..."
-        # Insert deployment commands for Render here (e.g., using the Render API or CLI)
+        # Add commands for linting HTML/CSS, if you use any (optional)
+        htmlhint index.html  # Example for HTML linting (change as needed)
+        stylelint **/*.css  # Example for CSS linting (change as needed)
