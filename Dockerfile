@@ -2,7 +2,9 @@
 FROM php:8.1-apache
 
 # Install the mysqli PHP extension
-RUN docker-php-ext-install mysqli
+# Add the PostgreSQL PDO extension
+RUN apt-get update && apt-get install -y php-pgsql
+
 
 # Enable Apache mod_rewrite (optional but often needed)
 RUN a2enmod rewrite
