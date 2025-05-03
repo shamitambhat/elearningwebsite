@@ -21,11 +21,6 @@ jobs:
       with:
         php-version: '8.0'  # Use the correct PHP version for your project
 
-    - name: Install Composer (if needed for PHP dependencies)
-      run: |
-        curl -sS https://getcomposer.org/installer | php
-        php composer.phar install  # If you're using Composer for PHP dependencies
-
     - name: Deploy or build your application
       run: |
         echo "Add your build or deploy steps here"
