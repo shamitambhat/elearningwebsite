@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: elearning-php-app
+    env: php
+    plan: free
+    region: oregon
+    buildCommand: ""
+    startCommand: ""
+    autoDeploy: true
+    repo: https://github.com/<shamitambhat>/<elearningwebsite>
+    branch: master
