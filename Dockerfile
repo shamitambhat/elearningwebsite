@@ -1,14 +1,14 @@
-# Use an official PHP runtime as a parent image
-FROM php:7.4-cli
+# Use the official PHP image as the base image
+FROM php:8.1-apache
 
-# Set the working directory in the container
-WORKDIR /var/www/html
+# Install necessary PHP extensions
+RUN apt-get update && apt-get install -y libmysqli-dev && docker-php-ext-install mysqli
 
-# Copy the current directory contents into the container at /var/www/html
-COPY . .
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
+# Copy your project files into the container
+COPY . /var/www/html/
 
 # Expose the port the app will run on
-EXPOSE 10000
-
-# Start the PHP built-in server
-CMD ["php", "-S", "0.0.0.0:10000"]
+EXPOSE 80
