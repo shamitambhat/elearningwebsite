@@ -1,9 +1,13 @@
 # Use official PHP Apache image
 FROM php:8.1-apache
+FROM php:7.4-apache
 
-# Install the mysqli PHP extension
-# Add the PostgreSQL PDO extension
-RUN apt-get update && apt-get install -y php-pgsql
+# Install dependencies for PostgreSQL extension
+RUN apt-get update && apt-get install -y libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
+# Enable mod_rewrite
+RUN a2enmod rewrite
 
 
 # Enable Apache mod_rewrite (optional but often needed)
@@ -16,7 +20,6 @@ COPY . /var/www/html/
 WORKDIR /var/www/html/
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 5432
 
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
+# Start Apache in the foregroun
