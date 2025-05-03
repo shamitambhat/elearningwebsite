@@ -15,14 +15,21 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.0'  # Use the correct PHP version for your project
 
+    - name: Install HTMLHint (for HTML linting)
+      run: |
+        npm install -g htmlhint  # Install htmlhint globally
+
+    - name: Install Stylelint (for CSS linting)
+      run: |
+        npm install -g stylelint stylelint-config-standard  # Install stylelint globally
+
     - name: Lint HTML and CSS
       run: |
-        # Add commands for linting HTML/CSS, if you use any (optional)
-        htmlhint index.html  # Example for HTML linting (change as needed)
-        stylelint **/*.css  # Example for CSS linting (change as needed)
+        htmlhint index.html  # Example for HTML linting
+        stylelint '**/*.css'  # Example for CSS linting
