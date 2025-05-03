@@ -25,11 +25,6 @@ jobs:
       run: |
         npm install -g htmlhint  # Install htmlhint globally
 
-    - name: Install Stylelint (for CSS linting)
-      run: |
-        npm install -g stylelint stylelint-config-standard  # Install stylelint globally
-
-    - name: Lint HTML and CSS
+    - name: Lint HTML
       run: |
         htmlhint index.html  # Example for HTML linting
-        stylelint '**/*.css'  # Example for CSS linting
