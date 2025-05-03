@@ -1,0 +1,30 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+
+    // Path to the file containing the credentials
+    $file = 'credentials.txt';
+
+    // Read the stored credentials
+    $stored_credentials = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    
+    $is_valid = false;
+
+    foreach ($stored_credentials as $credential) {
+        list($stored_username, $stored_password) = explode(':', $credential);
+
+        if ($username === $stored_username && $password === $stored_password) {
+            $is_valid = true;
+            break;
+        }
+    }
+
+    if ($is_valid) {
+        echo "<h2>Login successful! Welcome, $username.</h2>";
+    } else {
+        header("Location: login.html?error=1");
+        exit();
+    }
+}
+?>
