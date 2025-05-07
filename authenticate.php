@@ -47,7 +47,7 @@ if ($stmt->rowCount() === 0) {
     $insert->bindParam(':password', $password, PDO::PARAM_STR);
     
     if ($insert->execute()) {
-        echo "<script>alert('New user stored in database'); window.location.href='login.html';</script>";
+        echo "<script>alert('New user stored in database, you have been registered, please login again.'); window.location.href='login.html';</script>";
     } else {
         echo "Error storing new user: " . $insert->errorInfo()[2];
     }
