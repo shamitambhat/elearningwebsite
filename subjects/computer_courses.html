@@ -6,26 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="subjects.css">
 	<script type="text/javascript" src="../script.js"></script>
 </head>
-<script>
-	function performSearch() {
-    const searchInput = document.getElementById("searchid").value.toLowerCase();
-
-    if (searchInput === "database") {
-        window.location.href = "https://www.techtarget.com/searchdatamanagement/definition/database-management-system";
-    } 
-	if (searchInput === "web technology") {
-        window.location.href = "https://www.geeksforgeeks.org/web-technology/";
-    } 
-	if (searchInput === "java") {
-        window.location.href = "https://www.w3schools.com/java/";
-    } 
-	else {
-        // Implement other search logic or handle invalid searches
-        alert("No results found for your search.");
-    }
-}
-	
-</script>
+ 
 <body>
 	
 <!-- NAVIGATION -->
@@ -42,11 +23,175 @@
 				<li><a href="#algo"><img src="../images/courses/algo.png" class="icon">Algorithm</a></li>
 				<li><a href="#projects"><img src="../images/courses/projects.png" class="icon">Projects</a></li>
 			</ul>
-			<div class="search" id="search-switch">
-				<input type="search" placeholder="Search" class="srch" id="searchid">
-				<button id="srchbtn" onclick="performSearch()">
-					<img src="../images/icon/search.png" alt="Search Icon">
+			<div class="search" id="search-switch" style="display: flex; align-items: center; gap: 8px; margin: 20px auto; width: fit-content;">
+				<div style="position: relative; width: 300px;">
+				  <input
+					type="text"
+					id="searchid"
+					placeholder="Search a topic..."
+					style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 16px;"
+					autocomplete="off"
+				  />
+				  <div
+					id="suggestions"
+					style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; border-top: none; border-radius: 0 0 8px 8px; max-height: 200px; overflow-y: auto; display: none; z-index: 1000;"
+				  ></div>
+				</div>
+			  
+				<button id="srchbtn" onclick="performSearch()" style="background: none; border: none; cursor: pointer;">
+					<img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon" style="width: 24px; height: 24px;">
+
 				</button>
+			  </div>
+			  
+			  <script>
+				const topics = [
+				  "Database",
+				  "Web Technology",
+				  "Java",
+				  "Android Development",
+				  "Bootstrap",
+				  "JavaScript",
+				  "Hardware Designing",
+				  "Adobe XD",
+				  "UI Designing",
+				  "Full Stack Web Development",
+				  "HTML and CSS",
+				  "Data Structures",
+				  "Ethical Hacking",
+				  "Cyber Security",
+				  "Networking",
+				  "Artificial Intelligence",
+				  "Machine Learning",
+				  "Python",
+				  "Algorithm",
+				  "Game Development",
+				  "Compiler Designing",
+				  "C++",
+				  "FXML"
+				];
+			  
+				const searchInput = document.getElementById("searchid");
+				const suggestionBox = document.getElementById("suggestions");
+			  
+				searchInput.addEventListener("input", function () {
+				  const inputVal = searchInput.value.trim().toLowerCase();
+				  suggestionBox.innerHTML = "";
+			  
+				  if (inputVal.length === 0) {
+					suggestionBox.style.display = "none";
+					return;
+				  }
+			  
+				  const filtered = topics.filter(topic =>
+					topic.toLowerCase().includes(inputVal)
+				  );
+			  
+				  if (filtered.length === 0) {
+					suggestionBox.style.display = "none";
+					return;
+				  }
+			  
+				  filtered.forEach(item => {
+					const div = document.createElement("div");
+					div.textContent = item;
+					div.style.padding = "8px 12px";
+					div.style.cursor = "pointer";
+					div.style.borderBottom = "1px solid #eee";
+					div.addEventListener("click", () => {
+					  searchInput.value = item;
+					  suggestionBox.innerHTML = "";
+					  suggestionBox.style.display = "none";
+					  performSearch(); // triggers search after selecting suggestion
+					});
+					suggestionBox.appendChild(div);
+				  });
+			  
+				  suggestionBox.style.display = "block";
+				});
+			  
+				document.addEventListener("click", function (e) {
+				  if (!suggestionBox.contains(e.target) && e.target !== searchInput) {
+					suggestionBox.style.display = "none";
+				  }
+				});
+			  
+				function performSearch() {
+				  const input = searchInput.value.trim().toLowerCase();
+			  
+				  if (input === "database") {
+					window.location.href = "https://www.techtarget.com/searchdatamanagement/definition/database-management-system";
+				  } else if (input === "web technology") {
+					window.location.href = "https://www.geeksforgeeks.org/web-technology/";
+				  } else if (input === "java") {
+					window.location.href = "https://www.w3schools.com/java/";
+				  } else if (input === "android development") {
+					window.location.href = "https://www.geeksforgeeks.org/introduction-to-android-development/";
+				  } else if (input === "bootstrap") {
+					window.location.href = "https://www.youtube.com/watch?v=-qfEOE4vtxE";
+				  } else if (input === "javascript") {
+					window.location.href = "https://www.youtube.com/watch?v=ajdRvxDWH4w&list=PLGjplNEQ1it_oTvuLRNqXfz_v_0pq6unW";
+				  } else if (input === "hardware designing") {
+					window.location.href = "https://www.youtube.com/watch?v=kUruN6WBgSw&list=PLXSyc11qLa1YhVCZ5xWPuPsE5MkgEy5TF";
+				  }
+				  else if (input === "adobe xd") {
+					window.location.href = "https://www.youtube.com/watch?v=C-_pr1Hzlvg";
+				  } 
+				  else if (input === "ui designing") {
+					window.location.href = "https://www.youtube.com/watch?v=O5IXf8qB9U4&list=PLdvOfoe7PXT0ouChAnR1nHlT8BJIo5hP_";
+				  } 
+				  else if (input === "full stack web development") {
+					window.location.href = "https://www.youtube.com/watch?v=bWACo_pvKxg&list=PLSDeUiTMfxW6VChKWb26Z_mPR4f6fAmMV";
+				  } 
+				  else if (input === "data structures") {
+					window.location.href = "https://www.youtube.com/watch?v=-D5u5HJbISc&list=PLqleLpAMfxGAf5rrWdm92WMK3-gsrxgz5";
+				  }
+				  else if (input === "ethical hacking") {
+					window.location.href = "https://www.youtube.com/watch?v=dz7Ntp7KQGA";
+				  }
+				  else if (input === "cyber security") {
+					window.location.href = "https://www.youtube.com/watch?v=lpa8uy4DyMo&list=PL9ooVrP1hQOGPQVeapGsJCktzIO4DtI4_";
+				  }
+				  else if (input === "artificial intelligence") {
+					window.location.href = "https://www.youtube.com/watch?v=JMUxmLyrhSk&t=128s";
+				  }
+				  else if (input === "machine learning") {
+					window.location.href = "https://www.youtube.com/watch?v=7IgVGSaQPaw&t=195s";
+				  }
+				  else if (input === "python") {
+					window.location.href = "https://www.youtube.com/watch?v=_uQrJ0TkZlc&t=291s";
+				  }
+				  else if (input === "networking") {
+					window.location.href = "https://www.youtube.com/watch?v=IPvYjXCsTg8";
+				  }
+				  else if (input === "algorithm") {
+					window.location.href = "https://www.youtube.com/watch?v=u8JZ9gU5o4g&list=PLxCzCOWd7aiHcmS4i14bI0VrMbZTUvlTa";
+				  }
+				  else if (input === "game development") {
+					window.location.href = "https://www.youtube.com/watch?v=qPxvmrtTQ_4";
+				  }
+				  
+				  else if (input === "compiler designing") {
+					window.location.href = "https://www.youtube.com/watch?v=XUsw5igq4DM&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc";
+				  }
+				  else if (input === "c++") {
+					window.location.href = "https://www.youtube.com/watch?v=e7sAf4SbS_g";
+				  }
+				  else if (input === "fxml") {
+					window.location.href = "https://www.youtube.com/watch?v=K7BOH-Ll8_g";
+				  } else {
+					alert("No match found for: " + input);
+				  }
+				}
+			  
+				searchInput.addEventListener("keydown", function (event) {
+				  if (event.key === "Enter") {
+					performSearch();
+				  }
+				});
+			  </script>
+			  
+				  
 			</div>
 		</div>
 	</header>
