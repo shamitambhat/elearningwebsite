@@ -22,8 +22,123 @@
 				<li><a href="computer_courses.html#algo"><img src="../images/courses/algo.png" class="icon">Algorithm</a></li>
 				<li><a href="computer_courses.html#projects"><img src="../images/courses/projects.png" class="icon">Projects</a></li>
 			</ul>
+			<!--
 			<div class="search" id="search-switch">
 				<input type="text" placeholder="Search" class="srch"><button id="srchbtn"><img src="../images/icon/search.png"></button>
+			</div>
+			--><div class="search" id="search-switch" style="display: flex; align-items: center; gap: 8px; margin: 20px auto; width: fit-content;">
+				<div style="position: relative; width: 300px;">
+				  <input
+					type="text"
+					id="searchid"
+					placeholder="Search a topic..."
+					style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 16px;"
+					autocomplete="off"
+				  />
+				  <div
+					id="suggestions"
+					style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; border-top: none; border-radius: 0 0 8px 8px; max-height: 200px; overflow-y: auto; display: none; z-index: 1000;"
+				  ></div>
+				</div>
+			  
+				<button id="srchbtn" onclick="performSearch()" style="background: none; border: none; cursor: pointer;">
+					<img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon" style="width: 24px; height: 24px;">
+
+				</button>
+			  </div>
+			  
+			  <script>
+				const topics = [
+				  "Database Management Systems",
+				  "Design and Analysis and Algorithms",
+				  "Microcontroller Embedded Systems",
+				  "Statistics Probability and Graphs",
+				  "Python Programming",
+				  "Web Technologies",
+				  "Constitution of India and Professional Ethics",
+				  "Softskills"
+
+				];
+			  
+				const searchInput = document.getElementById("searchid");
+				const suggestionBox = document.getElementById("suggestions");
+			  
+				searchInput.addEventListener("input", function () {
+				  const inputVal = searchInput.value.trim().toLowerCase();
+				  suggestionBox.innerHTML = "";
+			  
+				  if (inputVal.length === 0) {
+					suggestionBox.style.display = "none";
+					return;
+				  }
+			  
+				  const filtered = topics.filter(topic =>
+					topic.toLowerCase().includes(inputVal)
+				  );
+			  
+				  if (filtered.length === 0) {
+					suggestionBox.style.display = "none";
+					return;
+				  }
+			  
+				  filtered.forEach(item => {
+					const div = document.createElement("div");
+					div.textContent = item;
+					div.style.padding = "8px 12px";
+					div.style.cursor = "pointer";
+					div.style.borderBottom = "1px solid #eee";
+					div.addEventListener("click", () => {
+					  searchInput.value = item;
+					  suggestionBox.innerHTML = "";
+					  suggestionBox.style.display = "none";
+					  performSearch(); // triggers search after selecting suggestion
+					});
+					suggestionBox.appendChild(div);
+				  });
+			  
+				  suggestionBox.style.display = "block";
+				});
+			  
+				document.addEventListener("click", function (e) {
+				  if (!suggestionBox.contains(e.target) && e.target !== searchInput) {
+					suggestionBox.style.display = "none";
+				  }
+				});
+			  
+				function performSearch() {
+				  const input = searchInput.value.trim().toLowerCase();
+			  
+				  if (input === "database management systems") {
+					window.location.href = "https://www.youtube.com/watch?v=X7v0O8yiUuY";
+				  } else if (input === "design and analysis and algorithms") {
+					window.location.href = "https://www.youtube.com/watch?v=u8JZ9gU5o4g&list=PLxCzCOWd7aiHcmS4i14bI0VrMbZTUvlTa";
+				  } else if (input === "microcontroller embedded systems") {
+					window.location.href = "https://www.youtube.com/watch?v=xCwcjKGZhlA";
+				  } else if (input === "statistics probability and graphs") {
+					window.location.href = "https://www.youtube.com/watch?v=qNGDD_Rh8ps&list=PLU6SqdYcYsfJPF-4HphQQ8OceDtqhlSW8";
+				  } else if (input === "python programming") {
+					window.location.href = "https://www.youtube.com/watch?v=_uQrJ0TkZlc&t=10135s";
+				  } else if (input === "web technologies") {
+					window.location.href = "https://www.youtube.com/watch?v=FSJsBb7wcFc&list=PLERZXVMwiajpCF7CnED9JZJSDdXIVKX34";
+				  } else if (input === "constitution of india and professional ethics") {
+					window.location.href = "https://www.youtube.com/watch?v=id6xSgmwig8&list=PLVDfFatHsysQexFS1vGxJMrWHFaPPbGzo";
+				  }
+				  else if (input === "softskills") {
+					window.location.href = "https://www.youtube.com/watch?v=hZSARM4VaVs";
+				  } 
+				   else {
+					alert("No match found for: " + input);
+				  }
+				}
+			  
+				searchInput.addEventListener("keydown", function (event) {
+				  if (event.key === "Enter") {
+					performSearch();
+				  }
+				});
+			  </script>
+			  
+				  
 			</div>
 		</div>
 	</header>
@@ -39,14 +154,14 @@
 <!-- Quick Links -->
 	<div class="course">
 		<div class="cbox">
-		<div class="det"><a href="https://www.geeksforgeeks.org/dbms/" target="_blank">Database Management Systems</a></div>
-		<div class="det"><a href="https://www.geeksforgeeks.org/design-and-analysis-of-algorithms/" target="_blank">Design and Analysis and Algorithms</a></div>
-		<div class="det"><a href="https://www.tutorialspoint.com/index.htm" target="_blank">Microcontroller Embeddded Systems</a></div>
-		<div class="det"><a href="https://www.geeksforgeeks.org/btech-4th-semester-syllabus/" target="_blank">Statistics, Probability and graphs</a></div>
-		<div class="det"><a href="https://www.w3schools.com/python/" target="_blank">Python Programming</a></div>
-		<div class="det"><a href="https://www.w3schools.com/whatis/" target="_blank">Web Technologies</a></div>
-		<div class="det"><a href="https://en.wikipedia.org/wiki/Constitution_of_India" target="_blank">Constitution of India and professional ethics</a></div>
-		<div class="det"><a href="https://www.indiabix.com/" target="_blank">Soft-Skills 2</a></div>
+		<div class="det"><a href="#organic" target="_blank">Database Management Systems</a></div>
+		<div class="det"><a href="#math" target="_blank">Design and Analysis and Algorithms</a></div>
+		<div class="det"><a href="#inorganic" target="_blank">Microcontroller Embeddded Systems</a></div>
+		<div class="det"><a href="#physical" target="_blank">Statistics, Probability and graphs</a></div>
+		<div class="det"><a href="#physics" target="_blank">Python Programming</a></div>
+		<div class="det"><a href="#smtng" target="_blank">Web Technologies</a></div>
+		<div class="det"><a href="#smt" target="_blank">Constitution of India and professional ethics</a></div>
+		<div class="det"><a href="#py" target="_blank">Soft-Skills 2</a></div>
 		</div>
 			</div>
 
@@ -639,15 +754,15 @@
 			<img src="../images/icon/bnmlogo3.jpg" style="width: 200px;">
 			<div class="logo"></div>
 			<div class="social-media">
-				<a href="https://www.facebook.com/harmonizing.frequencies/" target="_blank"><img src="../images/icon\fb.png"></a>
-				<a href="https://www.instagram.com/suhas__music/?hl=en" target="_blank"><img src="../images/icon\insta.png"></a>
+				<a href="https://www.facebook.com" target="_blank"><img src="../images/icon\fb.png"></a>
+				<a href="https://www.instagram.com/shamitaa.aa/?hl=en" target="_blank"><img src="../images/icon\insta.png"></a>
 				
 				<a href="https://www.youtube.com/@bnmitsocial" target="_blank"><img src="../images/icon\ytube.png"></a>
-				<a href="https://www.linkedin.com/in/suhas-m-03a281312/" target="_blank"><img src="../images/icon\linkedin.png"></a>
+				<a href="https://www.linkedin.com/in/shamita-m-bhat-b652172b7/" target="_blank"><img src="../images/icon\linkedin.png"></a>
 			</div><br><br>
-			<p class="rights-text">Copyright © 2024 Created By Shamita M, Suhas M, T Sai Shravan All Rights Reserved.</p>
+			<p class="rights-text">Copyright © 2025 Created By Shamita M, Varsha A Habbu, Yashaswini S All Rights Reserved.</p>
 			<br><p><img src="../images/icon/location.png"> BNM INSTITUTE OF TECHNOLOGY<br>Banashankari, Bengaluru</p><br>
-			<p><img src="../images/icon/phone.png"> +91-9900109200<br><img src="../images/icon/mail.png">&nbsp; 22cse119@bnmit.in</p>
+			<p><img src="../images/icon/phone.png"> +91-8310249304<br><img src="../images/icon/mail.png">&nbsp; 22cse151@bnmit.in</p>
 		</div>
 		<div class="right-col">
 			<h1 style="color: #fff">Our Newsletter</h1>
