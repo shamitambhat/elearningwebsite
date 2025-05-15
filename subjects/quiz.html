@@ -4,6 +4,57 @@
 	<title>Quiz on BNMIT-ELearn</title>
 	<link rel="stylesheet" type="text/css" href="quizStyle.css">
 	<link rel="shortcut icon" type="image/png" href="../images/icon/favicon.png">
+	<style>
+	body, html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: Arial, sans-serif;
+}
+
+.card-container {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	gap: 30px; /* Increased gap */
+	height: 100%;
+	flex-wrap: wrap;
+	padding: 30px;
+}
+
+.quiz-card {
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	width: 320px; /* Increased width */
+	text-align: center;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	transition: transform 0.3s;
+	padding: 30px; /* Increased padding */
+	background-color: #f9f9f9;
+	font-size: 18px; /* Optional: make text larger */
+}
+
+.quiz-card:hover {
+	transform: scale(1.08); /* Slightly stronger hover effect */
+}
+
+.quiz-card h3 {
+	margin-bottom: 15px;
+	font-size: 22px; /* Optional: larger heading */
+}
+
+.quiz-card a {
+	text-decoration: none;
+	color: white;
+	background-color: #ff0080;
+	padding: 12px 20px;
+	border-radius: 6px;
+	display: inline-block;
+	margin-top: 15px;
+	font-size: 16px; /* Optional: larger button text */
+}
+</style>
+
 </head>
 <body>
 
@@ -15,16 +66,12 @@
 		</div>
 		<div class="switch-tab" id="switch-tab"><img src="../images/icon/menu.png"></div>
 		<ul id="list-switch">
-			<!--<li><a href="jee.html"><img src="../images/courses/d1.png" class="icon">JEE</a></li>-->
 			<li><a href="gate.html"><img src="../images/courses/paper.png" class="icon">GATE</a></li>
 			<li><a href="computer_courses.html"><img src="../images/courses/computer.png" class="icon">Computer Courses</a></li>
 			<li><a href="computer_courses.html#data"><img src="../images/courses/data.png" class="icon">Data Structures</a></li>
 			<li><a href="computer_courses.html#algo"><img src="../images/courses/algo.png" class="icon">Algorithm</a></li>
 			<li><a href="computer_courses.html#projects"><img src="../images/courses/projects.png" class="icon">Projects</a></li>
 		</ul>
-		<div class="search" id="search-switch">
-			<input type="search" placeholder="Search" class="srch"><button id="srchbtn"><img src="../images/icon/search.png"></button>
-		</div>
 	</div>
 </header>
 
@@ -46,43 +93,18 @@
 			<li onclick="quizt(4)">GATE</li>
 			<li onclick="quizt(12)">Microcontroller Embedded Systems</li>
 			<li onclick="quizt(6)">Java</li>
-			<li onclick="quizt(7)">Python</li>
-			<li onclick="quizt(8)">JavaScript</li>
-			<li onclick="quizt(9)">Data Structures</li>
+			<li onclick="quizt(7)">Compiler Design</li>
+			<li onclick="quizt(8)">C++</li>
+			<li onclick="quizt(9)">Python</li>
 			<li onclick="quizt(10)">Algorithm</li>
-			<li onclick="quizt(11)">Interview Questions</li>
+			<li onclick="quizt(11)">C</li>
 		</ul>
 	</div>
 
 	<div class="right-side" id="right">
 		<div id="quiz-container">
-			<!-- All iframes hidden by default -->
-			<div id="f4" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdjSKZhQp5jqqR34zD_uWMtgXr18F9pdK6YqcafLSP6J7VZjw/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f5" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe1xs1-41MAbLN7KkXrJwtGdbl5ydxe_vX_nmFRjf6c0wtYkA/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f6" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdHFDm_BakVxro_zJI78OF2OLJpXgDzzaAVMHD9hptWlXBSpA/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f7" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdgD7yFEJtqpkImDiLAaQ7w9VcsO688gr1V3Gl7FqwM5yXtWQ/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f8" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSchDBnai_Aup7YFJQegg4z-qoB338p010VgZRxBYDT17xoRew/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f9" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfY5oIAz4R9Ty-LBpx7h4th6OJ0-RkrxIlLslRV4NjwwW8_uw/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f10" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSflwS89sG7H98J9vFgFqJgsKaZ5gpq3yUlOiW3up7RQQ-qRnw/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f11" class="quiz-frame" style="display:none;">
-				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_aS8-CMNFdUzI1UE73zahC2bmMwJkmB6FJXPIeKbLIBqB4Q/viewform?embedded=true" width="100%" height="800px"></iframe>
-			</div>
-			<div id="f12" class="quiz-frame" style="display:none;">
-				<iframe src="https://forms.gle/1yXN37SmtNnrVzKC9" width="100%" height="800px"></iframe>
+			<div class="card-container" id="quiz-cards">
+				<!-- Cards will be injected here -->
 			</div>
 		</div>
 	</div>
@@ -93,18 +115,61 @@
 function startquiz() {
 	document.getElementById("title").style.display = "none";
 	document.getElementById("panel").style.display = "flex";
-	
 }
 
 function quizt(index) {
-	// Hide all quiz frames
-	for (let i = 4; i <= 11; i++) {
-		const frame = document.getElementById("f" + i);
-		if (frame) frame.style.display = "none";
+	const quizData = {
+		4: [
+			{ title: "GATE - Quiz 1", link: "https://docs.google.com/forms/d/e/1FAIpQLSdu1D1GF5Cz0OPp-_Hr9Wj-xYx__8monZXhfgZUilzbEBWy2A/viewform?usp=sharing&ouid=103113147529432803002" },
+			{ title: "GATE - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSeA_epMkJ3-0x6wiN1PQA1Y-aXaE4SqvlORgwXzRdYb7HrRKg/viewform?usp=header" 
+			}
+		],
+		12: [
+			{ title: "Microcontroller - Quiz 1", link: "https://docs.google.com/forms/d/e/1FAIpQLSf4BAzMP9VSqVgkddNX1zbrt5cz_x9vNT2UDm17l-B_vvk1LQ/viewform?usp=header" },
+			{ title: "Microcontroller - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSfQBKMOu3lMePaIS8UHhCTL830amRHihxTdp_U8RNbDnyy_DA/viewform?usp=header" }
+			
+		],
+		6: [
+			{ title: "Java - Quiz 1", link: "https://forms.gle/mMrKVetEoUToboLx8" },
+			{ title: "Java - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSeNLGOZPGBx_xgavZzkP34-PMqO5ah9nKHynsVbOUu7RjaknA/viewform?usp=header" }
+			
+		],
+		7: [
+			{ title: "Compiler Design - Quiz 1", link: "https://forms.gle/YmeFsGSCGTw4MZZ3A" },
+			{ title: "Compiler Design - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSfkLbVHF4MbzLRZ5Ulu7QQEaj0CYrDChX3fFt1YJTDmdgs-SQ/viewform?usp=header" }
+			
+		],
+		8: [
+			{ title: "C++ - Quiz 1", link: "https://forms.gle/xiW7yq9LVaRmdYuC9" },
+			{ title: "C++ - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSfB0KTHSJHvFccM7qU5AXf4ZY_C1icfF9PU0habFa3v5OshWA/viewform?usp=header" }
+			
+		],
+		9: [
+			{ title: "Python - Quiz 1", link: "https://forms.gle/YNpEvbWDiFCjf2q48" },
+			{ title: "Python - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSfFcbhE7nfCnJ0ioo-dN1XWfZ_rpo-q3V4aiSOa8Vs9j8VDGQ/viewform?usp=header2" }
+		],
+		10: [
+			{ title: "Algorithm- Quiz 1", link: "https://docs.google.com/forms/d/e/1FAIpQLScZxTx1JjuU6Nhon1AGDNWUDgYjCt-PvtKlDtkLUPS0uHtMzg/viewform?usp=header" },
+			{ title: "Algorithm - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSfGOJj2oNLelFeNxUy4evS1unF4ZqQyoFj07tHwRyKj4PxYRQ/viewform?usp=header" }
+		],
+		11: [
+			{ title: "C - Quiz 1", link: "https://forms.gle/vSPMj7Wj5xCWEzuZA" },
+			{ title: "C - Quiz 2", link: "https://docs.google.com/forms/d/e/1FAIpQLSdW_HHycUHoQdHPlBlWnVBFORNZRJmFaK2sJMRFYuuBKpWWAw/viewform?usp=header "}
+		]
+	};
+
+	const container = document.getElementById("quiz-cards");
+	container.innerHTML = ""; // Clear previous cards
+
+	if (quizData[index]) {
+		container.style.display = "flex";
+		quizData[index].forEach(q => {
+			const card = document.createElement("div");
+			card.className = "quiz-card";
+			card.innerHTML = `<h3>${q.title}</h3><a href="${q.link}" target="_blank">Take Quiz</a>`;
+			container.appendChild(card);
+		});
 	}
-	// Show selected quiz frame
-	const selectedFrame = document.getElementById("f" + index);
-	if (selectedFrame) selectedFrame.style.display = "block";
 }
 </script>
 
